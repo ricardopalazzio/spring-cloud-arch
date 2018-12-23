@@ -1,0 +1,70 @@
+spring:
+  profiles:
+    active: dev
+
+  servlet:
+    multipart:
+      file-size-threshold: 2KB
+      location: /tmp
+      max-file-size: 5MB
+      max-request-size: 25MB
+
+#  datasource:
+#    url: jdbc:h2:file:~/adocao
+#    username: sa
+#    password: 123
+#    driver-class-name: org.h2.Driver
+#
+#  jpa:
+#    database: h2
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: create
+#    properties:
+#      hibernate.format_sql: true
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/adocao?useSSL=false&requireSSL=false
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      connection:
+        charset: utf8
+        useUnicode: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+---
+
+spring:
+  profiles: prod
+server:
+  port: 8080
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: text/html,text/css,application/javascript,application/json
+
+---
+
+spring:
+  profiles: dev
+server:
+  port: 8443
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore.p12
+    key-store-password: 123123
+    key-alias: tomcat
+    enabled: true
+  compression:
+    enabled: true
+    min-response-size: 4096
+    mime-types: text/html,text/css,application/javascript,application/json
+  http2:
+    enabled: true
