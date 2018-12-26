@@ -1,0 +1,15 @@
+zuul:
+  prefix: /api
+  routes:
+    feed:
+      path: /feed/**
+      serviceId: feed
+      strip-prefix: false
+    uaa:
+      path: /uaa/**
+      sensitiveHeaders:
+      serviceId: auth-server
+    account:
+      path: /account/**
+      sensitiveHeaders:
+      serviceId: account-service
