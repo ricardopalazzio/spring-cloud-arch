@@ -20,7 +20,7 @@ public class Address implements Serializable {
     @NotNull
     private String street;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @PrimaryKeyJoinColumn
     @JsonBackReference
     private Cliente cliente;

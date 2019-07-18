@@ -40,9 +40,9 @@ public class ClienteEndPoint extends CrudEndPoint<Cliente, Long>{
 
 
     @GetMapping("/search")
-    public ResponseEntity<?> all(@JoinFetch(paths = { "address" }) ClienteSpec spec , Pageable pageable){
+    public ResponseEntity<?> all( @JoinFetch(paths = { "address" }) ClienteSpec spec , Pageable pageable){
         return ResponseEntity.ok(repository.findAll(spec , pageable));
     }
 }
 
-
+//@JoinFetch(paths = { "address" })

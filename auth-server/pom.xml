@@ -51,7 +51,7 @@
 <!--            <artifactId>spring-boot-starter-security</artifactId>-->
 <!--        </dependency>-->
 
-
+<!-- https://github.com/tkaczmarzyk/specification-arg-resolver#enabling-spec-annotations-in-your-spring-app -->
         <dependency>
             <groupId>net.kaczmarzyk</groupId>
             <artifactId>specification-arg-resolver</artifactId>
