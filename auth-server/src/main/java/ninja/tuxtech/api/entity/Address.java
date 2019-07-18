@@ -4,6 +4,7 @@ package ninja.tuxtech.api.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 
@@ -16,6 +17,7 @@ public class Address implements Serializable {
     private Long id;
 
     @Column
+    @NotNull
     private String street;
 
     @ManyToOne

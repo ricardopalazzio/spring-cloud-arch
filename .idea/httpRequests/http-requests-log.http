@@ -1,3 +1,7 @@
+GET http://localhost:8761/{GET%20/}
+
+###
+
 GET http://localhost:8060/{GET%20/feed}
 
 ###

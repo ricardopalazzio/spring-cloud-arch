@@ -24,10 +24,16 @@ public class Cliente implements Serializable {
 
     @Column(unique = true)
     @NotEmpty
-    private String nome;
+    @NotNull
+    private String name;
 
-    @OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY ,  orphanRemoval = true)
-    @Cascade(value = {org.hibernate.annotations.CascadeType.PERSIST})
+
+    @Column
+    private String surname;
+
+
+    @OneToMany( mappedBy = "cliente" , fetch = FetchType.LAZY )
+    @Cascade(value = {org.hibernate.annotations.CascadeType.PERSIST , org.hibernate.annotations.CascadeType.MERGE,  org.hibernate.annotations.CascadeType.DELETE})
     @JsonManagedReference
     private Set<Address> address;
 
@@ -43,12 +49,20 @@ public class Cliente implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public Set<Address> getAddress() {

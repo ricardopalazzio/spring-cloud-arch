@@ -42,7 +42,7 @@ public class User implements Serializable {
     @Email
     private String email;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST , CascadeType.REMOVE})
     @JoinTable(name = "USER_ROLES", joinColumns = {
             @JoinColumn(name = "USER_ID" , foreignKey = @ForeignKey(name = "user_role_user_fk")) }, inverseJoinColumns = {
             @JoinColumn(name = "ROLE_ID", foreignKey = @ForeignKey(name = "user_role_rolefk")) })

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: prod
 
   servlet:
     multipart:
@@ -9,19 +9,6 @@ spring:
       max-file-size: 5MB
       max-request-size: 25MB
 
-#  datasource:
-#    url: jdbc:h2:file:~/adocao
-#    username: sa
-#    password: 123
-#    driver-class-name: org.h2.Driver
-#
-#  jpa:
-#    database: h2
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: create
-#    properties:
-#      hibernate.format_sql: true
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/adocao?useSSL=false&requireSSL=false&createDatabaseIfNotExist=true

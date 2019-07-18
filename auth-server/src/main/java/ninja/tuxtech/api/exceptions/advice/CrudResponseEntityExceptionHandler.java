@@ -9,6 +9,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -41,7 +42,7 @@ public class CrudResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
         ErrorDetails errorDetails =
                 new ErrorDetails(new Date(), "ConstraintViolationException",
-                        ex.getConstraintName().substring(1 , ex.getConstraintName().indexOf(" ")));
+                        ex.getConstraintName());
         return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
     }
 
@@ -54,6 +55,16 @@ public class CrudResponseEntityExceptionHandler extends ResponseEntityExceptionH
         ErrorDetails errorDetails =
                 new ErrorDetails(new Date(), "DataIntegrityViolationException",
                         ex.getMessage());
+        return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
+    }
+
+
+    @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
+    public ResponseEntity<?> handleConstraintViolation(ObjectOptimisticLockingFailureException ex) {
+
+        ErrorDetails errorDetails =
+                new ErrorDetails(new Date(), "ObjectOptimisticLockingFailureException",
+                        ex.getIdentifier()+" "+ex.getPersistentClassName());
         return new ResponseEntity(errorDetails, HttpStatus.CONFLICT);
     }
 }
